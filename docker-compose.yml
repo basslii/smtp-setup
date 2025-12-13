@@ -1,14 +1,15 @@
 services:
   mailhog:
     image: mailhog/mailhog
-    platform: linux/amd64       # 👈 add this line
+    container_name: smtp
+    platform: linux/amd64
     restart: always
     ports:
       - "1025:1025"   # SMTP
       - "8025:8025"   # Web UI
     networks:
-      - keycloak-net
+      - local-network
 
 networks:
-  keycloak-net:
+  local-network:
     external: true
